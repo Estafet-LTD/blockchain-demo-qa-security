@@ -22,7 +22,7 @@ node('maven') {
 	}
 
 	stage("tests") {
-		withMaven(mavenSettingsConfig: 'microservices-scrum') {
+		withMaven(mavenSettingsConfig: 'maven') {
 			sh "mvn clean test"
 		} 
 	}
