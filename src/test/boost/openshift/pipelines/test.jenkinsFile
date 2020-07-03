@@ -12,12 +12,6 @@ node('maven') {
 		git branch: "master", url: "https://github.com/${params.GITHUB}/${params.REPO}"
 	}
 
-	stage("reset the blockchain") {
-		sh "oc rollout latest dc/go-ethereum -n ${project}"
-		sh "oc rollout status dc/go-ethereum -n ${project}"
-		sleep time:"30", unit: "SECONDS"  	
-	}
-
 	stage("tests") {
 		withMaven(mavenSettingsConfig: 'maven') {
 			sh "mvn clean test"
